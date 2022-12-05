@@ -23,3 +23,37 @@ pub fn solution_1A() -> usize {
     }
     max_cal
 } 
+
+pub fn solution_1B() -> usize {
+    let mut max_cal: usize = 0;
+    let mut acc: usize = 0;
+    let mut max_3: [usize;3]= [0;3];
+
+    for line in INPUT.lines(){
+        match line {
+            "" => {
+                if acc>max_cal {
+                    max_cal = acc
+                }
+                max_3 = *keep_three(&mut max_3, acc);
+                dbg!(max_3);
+                acc = 0;
+            },
+            cal => {
+                let cal =match cal.parse::<usize>() {
+                    Ok(n) => n,
+                    Err(_) => 0
+                };
+                acc += cal;
+            }
+            
+        }
+    }
+    max_3.iter().sum()
+}
+
+fn keep_three(array: &mut [usize;3], val: usize) -> &[usize;3] {
+    if array[2]<val {array[2] = val;}
+    array.sort_by(|a, b| b.cmp(a));
+    array
+}
