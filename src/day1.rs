@@ -1,6 +1,6 @@
 const INPUT: &str = include_str!("../inputs/day1.txt");
 
-pub fn solution_1_a() -> usize {
+pub fn solution_a() -> usize {
 
     let mut max_cal: usize = 0;
     let mut acc: usize = 0;
@@ -24,7 +24,7 @@ pub fn solution_1_a() -> usize {
     max_cal
 } 
 
-pub fn solution_1_b() -> usize {
+pub fn solution_b() -> usize {
     let mut max_cal: usize = 0;
     let mut acc: usize = 0;
     let mut max_3: [usize;3]= [0;3];
