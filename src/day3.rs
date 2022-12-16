@@ -16,10 +16,7 @@ pub fn solution_b() -> usize {
         let ind = i%3;
         triplet[ind] = encode(line);
         if ind == 2 {
-            triplet[0].sort_unstable();
-            triplet[1].sort_unstable();
-            triplet[2].sort_unstable();
-            score = score + find_match_value_3l(&triplet[0], &triplet[1], &triplet[2]);
+            score = score + find_match_value_3l(&mut triplet);
         }
     }
     score
@@ -45,11 +42,17 @@ fn encode(str1: &str) -> Vec<usize>{
     encoded
 }
 
-fn find_match_value_3l(vec1: &Vec<usize>,vec2: &Vec<usize>,vec3: &Vec<usize>)-> usize {
-    for e3 in vec3{
-        for e2 in vec2{
+fn find_match_value_3l(triplet: &mut [Vec<usize>;3])-> usize {
+    let mut vec1 = triplet[0].to_vec();
+    let mut vec2 = triplet[1].to_vec();
+    let mut vec3 = triplet[2].to_vec();
+    vec1.sort_unstable();
+    vec2.sort_unstable();
+    vec3.sort_unstable();
+    for e3 in &vec3{
+        for e2 in &vec2{
             if e3 == e2 {
-                for e1 in vec1{
+                for e1 in &vec1{
                     if e2 == e1 {
                         return *e1 
                     } else if e1 > e2 {
