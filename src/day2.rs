@@ -20,7 +20,7 @@ pub fn solution_a() -> usize{
 pub fn solution_b() -> usize{
     let mut score: usize = 0;
     for line in INPUT.lines(){
-        let (_,others_pick) = decode_picks(line);
+        let (_,others_pick) = decode_picks(&line);
         let my_pick = what_to_pick(&others_pick, &line[2..3]);
         score = score +
          pick_value(&my_pick) + 
